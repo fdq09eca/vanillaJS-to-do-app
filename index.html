@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To Do App - Vanilla JS</title>
+  </head>
+  <body>
+    <div>
+      <input id="input-to-do-item" name="todo" type="text" />
+      <button id="add-to-do-btn">Add to do</button>
+    </div>
+    <ul id="to-do-items"></ul>
+
+  </body>
+
+  <script>
+    // Data
+    const todoItems = [];
+
+    // Get DOM element
+    const todoList = () => {
+      return document.getElementById("to-do-items");
+    };
+    const todoInputNode = () => {
+      return document.getElementById("input-to-do-item");
+    };
+    const AddtodoButton = document.getElementById("add-to-do-btn");
+
+    // Functions
+    const Addtodo = () => {
+      const todoText = todoInputNode().value;
+      const todoItemNode = newtodoItemNode(todoText);
+      todoList().appendChild(todoItemNode);
+
+      // clear input field
+      todoInputNode().value = "";
+
+      // add to todoItems in memory
+      pushToMemory(todoText);
+
+      // let's check
+      console.log(todoItems);
+    };
+
+    function newtodoItemNode(todoText) {
+      const li = document.createElement("li");
+      li.innerHTML = todoText;
+      return li;
+    }
+
+    function pushToMemory(todoText) {
+      todoItems.push(todoText);
+    }
+
+    // AddEventListener
+    AddtodoButton.addEventListener("click", Addtodo);
+  </script>
+</html>
